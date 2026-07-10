@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure RAG Studio — Document AI &amp; Knowledge Copilot</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="site-frame">
+        <div class="cozy-canvas">
+            
+            <!-- ==========================================================
+                 NAVIGATION BAR
+                 ========================================================== -->
+            <header class="navbar">
+                <a href="#" class="brand-logo">
+                    <div class="paw-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <span class="brand-name">Azure RAG Studio</span>
+                </a>
+
+                <nav class="nav-links">
+                    <a href="#hero" class="nav-item active">Overview</a>
+                    <a href="#doc-workspace" class="nav-item">Document Upload</a>
+                    <a href="#ai-assistant" class="nav-item">Interactive Chat</a>
+                    <a href="/docs" target="_blank" class="nav-item">API Docs</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <div class="star-badge" title="Factual Grounding Benchmark">
+                        <span>★ 99.4% Factual Grounding</span>
+                    </div>
+
+                    <div class="cart-pill" title="Live Knowledge Index">
+                        <span>🟢 Semantic Index Active</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ==========================================================
+                 LUCID HERO SECTION
+                 ========================================================== -->
+            <section class="hero-section" id="hero">
+                
+                <!-- Left Floating Feature Card -->
+                <div class="float-card product-card-float" onclick="scrollToDocWorkspace()">
+                    <div class="card-img-wrapper">
+                        <svg class="tech-card-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="22" y="15" width="56" height="70" rx="8" fill="#eefbe8" stroke="#0a461e" stroke-width="3"/>
+                            <path d="M35 32H65M35 46H65M35 60H52" stroke="#ff5c00" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="70" cy="65" r="14" fill="#0a461e"/>
+                            <path d="M65 65L69 69L76 61" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <button class="arrow-btn" aria-label="Upload Document">↗</button>
+                    </div>
+                    <div class="card-details">
+                        <h4>PDF &amp; Word Support</h4>
+                        <div class="price-tag">Instant Semantic Chunking</div>
+                    </div>
+                </div>
+
+                <!-- Right Floating Feature Card -->
+                <div class="float-card video-card-float" onclick="scrollToAI('📊 Summarize key findings from the uploaded document')">
+                    <div class="video-thumb">
+                        <svg viewBox="0 0 200 135" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:#0a461e;">
+                            <rect width="200" height="135" fill="#0a461e"/>
+                            <circle cx="100" cy="67" r="45" fill="#ff5c00" fill-opacity="0.18"/>
+                            <path d="M40 67H160" stroke="#b4e8be" stroke-width="2" stroke-dasharray="4 4"/>
+                            <circle cx="60" cy="67" r="8" fill="#ffffff"/>
+                            <circle cx="100" cy="67" r="10" fill="#ff5c00"/>
+                            <circle cx="140" cy="67" r="8" fill="#ffffff"/>
+                        </svg>
+                        <div class="play-circle">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="video-caption">Grounded Document Q&amp;A Pipeline</div>
+                </div>
+
+                <!-- Center Hero Title -->
+                <div class="hero-center-content">
+                    <h1 class="hero-title">
+                        <span>Chat With Your</span>
+                        <span>Documents &amp; Data</span>
+                    </h1>
+                </div>
+
+                <!-- Bottom 3 Interactive Overview Cards -->
+                <div class="peek-cards-grid">
+                    
+                    <div class="peek-card mint-card" onclick="scrollToDocWorkspace()">
+                        <div class="peek-graphic">
+                            <svg viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="40" y="25" width="140" height="85" rx="12" fill="#ffffff" stroke="#0a461e" stroke-width="2"/>
+                                <circle cx="70" cy="65" r="14" fill="#0a461e" fill-opacity="0.15"/>
+                                <path d="M65 65L69 69L77 60" stroke="#0a461e" stroke-width="2.5" stroke-linecap="round"/>
+                                <rect x="95" y="53" width="65" height="8" rx="4" fill="#0a461e" fill-opacity="0.8"/>
+                                <rect x="95" y="69" width="45" height="8" rx="4" fill="#0a461e" fill-opacity="0.4"/>
+                            </svg>
+                        </div>
+                        <div class="card-bottom-banner">
+                            <div class="stats-row">
+                                <span class="stat-num">PDF &amp; DOCX</span>
+                            </div>
+                            <div class="peek-desc">Upload reports, specs, and proposals for instant AI parsing and retrieval</div>
+                        </div>
+                    </div>
+
+                    <div class="peek-card emerald-card">
+                        <div class="card-bottom-banner center-banner">
+                            <h3>Query Your Active Document</h3>
+                            <button class="cta-orange-btn" onclick="scrollToDocWorkspace()">
+                                <span>Upload or Choose Sample</span>
+                                <div class="btn-arrow-circle">→</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="peek-card mint-card" onclick="scrollToAI('📊 Summarize key findings from the uploaded document')">
+                        <div class="peek-graphic">
+                            <svg viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 100 C 60 40, 100 90, 140 30 C 165 60, 180 40, 190 25" stroke="#ff5c00" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                                <circle cx="140" cy="30" r="6" fill="#ff5c00"/>
+                                <circle cx="190" cy="25" r="6" fill="#0a461e"/>
+                            </svg>
+                        </div>
+                        <div class="card-bottom-banner">
+                            <div class="rating-display">
+                                <span class="star-icon">⚡</span>
+                                <span class="stat-num">Precision</span>
+                            </div>
+                            <div class="peek-desc">Every AI response includes exact citations to verified document passages</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================================
+                 DOCUMENT INGESTION & LIVE PREVIEW WORKSPACE
+                 ========================================================== -->
+            <section class="document-workspace-section" id="doc-workspace">
+                <div class="section-header">
+                    <div class="ai-badge">
+                        <span class="pulse-dot"></span>
+                        <span>Step 1 • Upload or Select Document</span>
+                    </div>
+                    <h2>Document Ingestion &amp; Live Preview</h2>
+                    <p>Upload a PDF or Word document (.docx) or select a sample enterprise report to inspect its parsed content.</p>
+                </div>
+
+                <!-- Sample Document Switcher Bar -->
+                <div class="sample-switcher-bar">
+                    <span class="switcher-label">Sample Documents:</span>
+                    <button class="sample-btn active" onclick="loadSampleDocument('Global_Enterprise_AI_Report_2026.pdf', this)">
+                        📄 AI Strategy Report (PDF)
+                    </button>
+                    <button class="sample-btn" onclick="loadSampleDocument('Q4_Financial_Performance_Analysis.docx', this)">
+                        📑 Q4 Financial Analysis (DOCX)
+                    </button>
+                    <button class="sample-btn" onclick="loadSampleDocument('Cloud_Security_Compliance_Specification.pdf', this)">
+                        🔒 Security Specification (PDF)
+                    </button>
+                </div>
+
+                <div class="document-grid">
+                    
+                    <!-- Left: Upload Box -->
+                    <div class="doc-upload-box" id="dropZone">
+                        <div class="upload-icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3>Upload PDF or Word Document</h3>
+                        <p>Drag and drop your document here, or click to browse</p>
+                        <span class="upload-sub">Supports .PDF, .DOCX, and .TXT</span>
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.txt" style="display:none;" onchange="handleFileUpload(event)">
+                        <button class="upload-browse-btn" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                    </div>
+
+                    <!-- Right: Live Document Preview Card -->
+                    <div class="doc-preview-card" id="docPreviewCard">
+                        <div class="preview-header">
+                            <div class="doc-title-row">
+                                <span class="file-type-pill" id="docTypePill">PDF</span>
+                                <h4 id="docTitle">Global_Enterprise_AI_Report_2026.pdf</h4>
+                            </div>
+                            <span class="doc-status-badge">✓ Indexed &amp; Ready</span>
+                        </div>
+
+                        <div class="preview-stats">
+                            <div class="p-stat">
+                                <span class="p-val" id="docPages">18</span>
+                                <span class="p-lbl">Pages</span>
+                            </div>
+                            <div class="p-stat">
+                                <span class="p-val" id="docChunks">12</span>
+                                <span class="p-lbl">Vector Chunks</span>
+                            </div>
+                            <div class="p-stat">
+                                <span class="p-val">100%</span>
+                                <span class="p-lbl">Grounding Ready</span>
+                            </div>
+                        </div>
+
+                        <div class="preview-body-box">
+                            <h5>Document Content Preview:</h5>
+                            <p id="docPreviewText">
+                                Executive Summary: The 2026 Enterprise AI &amp; Automation Report outlines a 45% productivity surge across organizations deploying grounded Retrieval-Augmented Generation (RAG) pipelines. Key strategic pillars include multi-modal document understanding, real-time vector indexing, and zero-data-retention privacy protocols across distributed teams...
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==========================================================
+                 INTEGRATED RAG CHAT COPILOT & CITATION INSPECTOR
+                 ========================================================== -->
+            <section class="ai-assistant-section" id="ai-assistant">
+                <div class="section-header">
+                    <div class="ai-badge">
+                        <span class="pulse-dot"></span>
+                        <span>Step 2 • Grounded Q&amp;A Over Active Document</span>
+                    </div>
+                    <h2>Document RAG Chat Copilot</h2>
+                    <p>Ask questions about your uploaded document. Answers reference verified passages and exact similarity scores.</p>
+                </div>
+
+                <!-- Starter Prompt Chips -->
+                <div class="prompt-chips">
+                    <button class="prompt-chip" onclick="askDirectPrompt('📊 Summarize key findings from the uploaded document')">
+                        <span>📊 Summarize key findings from the uploaded document</span>
+                    </button>
+                    <button class="prompt-chip" onclick="askDirectPrompt('🔍 Extract critical risks & recommendations')">
+                        <span>🔍 Extract critical risks &amp; recommendations</span>
+                    </button>
+                    <button class="prompt-chip" onclick="askDirectPrompt('💡 What are the main strategic objectives?')">
+                        <span>💡 What are the main strategic objectives?</span>
+                    </button>
+                </div>
+
+                <!-- RAG Console & Citation Inspector Grid -->
+                <div class="rag-workspace-grid">
+                    
+                    <!-- Main Chat Stream -->
+                    <div class="chat-console">
+                        <div class="chat-header">
+                            <span class="console-title">Document Intelligence Copilot</span>
+                            <span class="active-doc-indicator" id="chatDocIndicator">📄 Active: Global_Enterprise_AI_Report_2026.pdf</span>
+                            <button class="clear-btn" onclick="clearChat()">Clear Chat</button>
+                        </div>
+
+                        <div class="chat-messages" id="chatStream">
+                            <div class="message assistant-msg">
+                                <div class="msg-avatar">⚡</div>
+                                <div class="msg-content">
+                                    <div class="markdown-body">
+                                        <h3>Ready to Analyze Your Document</h3>
+                                        <p>I am actively indexed on your document. Ask any question to retrieve grounded answers!</p>
+                                        <ul>
+                                            <li><strong>Document Grounding:</strong> Answers are constructed strictly from document passages.</li>
+                                            <li><strong>Interactive Citations:</strong> Inspect retrieved source passages on the right-hand panel.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="chat-form" id="chatForm" onsubmit="handleFormSubmit(event)">
+                            <div class="input-container">
+                                <textarea 
+                                    id="chatInput" 
+                                    class="chat-input" 
+                                    placeholder="Ask anything about the active document..." 
+                                    rows="1"
+                                    onkeydown="handleKeydown(event)"
+                                ></textarea>
+                                <button type="submit" class="send-btn" id="sendBtn">
+                                    <span>Ask Document</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Citation Inspector Drawer -->
+                    <aside class="inspector-drawer">
+                        <div class="inspector-header">
+                            <div class="inspector-title">
+                                <span>Retrieved Document Citations</span>
+                            </div>
+                            <span class="chunk-badge" id="chunkBadge">Ready</span>
+                        </div>
+                        <p class="inspector-desc">Live excerpts and semantic similarity scores retrieved from the active document to verify grounded answers.</p>
+
+                        <div class="chunk-list" id="chunkContainer">
+                            <div class="empty-inspector">
+                                <p>No search executed yet.</p>
+                                <span>Ask a question to inspect retrieved document excerpts and citation scores.</span>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="site-footer">
+                <p>© 2026 Azure RAG Studio • Enterprise Document Intelligence &amp; Vector Retrieval Platform</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
